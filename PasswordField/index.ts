@@ -3,39 +3,39 @@ import { PasswordTextField, IPasswordTextFieldProps } from './components/Passwor
 import * as React from 'react';
 
 export class PasswordField implements ComponentFramework.ReactControl<IInputs, IOutputs> {
-    private notifyOutputChanged: () => void;
-    private context: ComponentFramework.Context<IInputs>;
-    private value: string | null;
+  private notifyOutputChanged: () => void;
+  private context: ComponentFramework.Context<IInputs>;
+  private value: string | null;
 
-    constructor() { }
+  constructor() { }
 
-    public init(
-      context: ComponentFramework.Context<IInputs>,
-      notifyOutputChanged: () => void,
-    ): void {
-      this.notifyOutputChanged = notifyOutputChanged;
-      this.context = context;
-    }
+  public init(
+    context: ComponentFramework.Context<IInputs>,
+    notifyOutputChanged: () => void,
+  ): void {
+    this.notifyOutputChanged = notifyOutputChanged;
+    this.context = context;
+  }
 
-    public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
-      this.value = <string>context.parameters.passwordFieldProperty?.raw;
-      const props: IPasswordTextFieldProps =
-      { newTextValue: this.value,
-        isControlDisabled: context.mode.isControlDisabled,
-        onChange: text => {
-          this.value = text;
-          this.notifyOutputChanged();
-        } };
-      return React.createElement(
-        PasswordTextField, props,
-      );
-    }
+  public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
+    const props: IPasswordTextFieldProps = {
+      currentTextValue: context.parameters.passwordFieldProperty.raw,
+      isControlDisabled: context.mode.isControlDisabled,
+      onChange: newTextValue => {
+        this.value = newTextValue || '';
+        this.notifyOutputChanged();
+      },
+    };
+    return React.createElement(
+      PasswordTextField, props,
+    );
+  }
 
-    public getOutputs(): IOutputs {
-      return { passwordFieldProperty: this.value || '' };
-    }
+  public getOutputs(): IOutputs {
+    return { passwordFieldProperty: this.value || '' };
+  }
 
-    public destroy(): void {
+  public destroy(): void {
 
-    }
+  }
 }

@@ -3,18 +3,13 @@ import { TextField } from '@fluentui/react';
 import { fieldStyles } from '../styles/fieldStyles';
 
 export interface IPasswordTextFieldProps {
-  newTextValue: string | null;
-  onChange: (text : string | null) => void;
+  currentTextValue: string | null;
+  onChange: (newTextValue : string | undefined) => void;
   isControlDisabled: boolean;
 }
 
 export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps> = props => {
-  const { newTextValue, onChange, isControlDisabled } = props;
-  const [textValue, setTextValue] = React.useState(newTextValue);
-
-  React.useEffect(() => {
-    setTextValue(newTextValue);
-  }, [newTextValue]);
+  const { currentTextValue, onChange, isControlDisabled } = props;
 
   return (
     <TextField
@@ -22,11 +17,10 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
       canRevealPassword
       revealPasswordAriaLabel="Show password"
       styles={fieldStyles}
-      value={textValue || ''}
+      value={currentTextValue || ''}
       disabled={isControlDisabled}
-      onChange={(e, value) => {
-        setTextValue(value || '');
-        onChange(value || '');
+      onChange={(e, newValue) => {
+        onChange(newValue);
       }}
     />
   );
