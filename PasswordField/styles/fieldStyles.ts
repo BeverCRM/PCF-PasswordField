@@ -1,4 +1,6 @@
-export const fieldStyles = {
+import { mergeStyleSets } from '@fluentui/react';
+
+export const fieldStyles = mergeStyleSets({
   fieldGroup: {
     backgroundColor: 'transparent',
     border: 'none',
@@ -18,8 +20,12 @@ export const fieldStyles = {
     },
   },
 
+  root: {
+    width: '100%',
+  },
+
   revealButton: {
     backgroundColor: 'transparent',
     visibility: 'hidden',
   },
-};
+});

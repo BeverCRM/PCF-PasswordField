@@ -14,7 +14,7 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
   return (
     <TextField
       type="password"
-      canRevealPassword
+      canRevealPassword={!!currentTextValue}
       revealPasswordAriaLabel="Show password"
       styles={fieldStyles}
       value={currentTextValue || ''}
