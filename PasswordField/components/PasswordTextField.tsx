@@ -10,17 +10,25 @@ export interface IPasswordTextFieldProps {
 
 export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps> = props => {
   const { currentTextValue, onChange, isControlDisabled } = props;
+  const [value, setValue] = React.useState(currentTextValue);
+
+  React.useEffect(() => {
+    setValue(currentTextValue);
+  }, [currentTextValue]);
 
   return (
     <TextField
       type="password"
-      canRevealPassword={!!currentTextValue}
+      canRevealPassword
       revealPasswordAriaLabel="Show password"
       styles={fieldStyles}
-      value={currentTextValue || ''}
+      value={value || ''}
       disabled={isControlDisabled}
       onChange={(e, newValue) => {
-        onChange(newValue);
+        setValue(newValue || '');
+      }}
+      onBlur={e => {
+        onChange(e.target.value);
       }}
     />
   );
