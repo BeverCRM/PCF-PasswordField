@@ -3,9 +3,9 @@
 
 This control converts the string field into a password field. 
 
-After changing the field type to “PasswordField”.
+After changing the field type to “BeverControl.PasswordField”.
 
-![image](https://user-images.githubusercontent.com/61091700/212685530-ca98f96e-f2a5-4d59-b7d5-5ba9ea8bf4d3.png)
+![image](https://user-images.githubusercontent.com/61091700/212837246-2612e766-eaa0-4060-9c8a-d4de999da89b.png)
 
 It will become as shown below.
 
