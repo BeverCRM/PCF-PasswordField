@@ -19,7 +19,7 @@ export class PasswordField implements ComponentFramework.ReactControl<IInputs, I
 
   public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
     const props: IPasswordTextFieldProps = {
-      currentTextValue: context.parameters.passwordFieldProperty.raw,
+      currentTextValue: context.parameters.passwordField.raw,
       isControlDisabled: context.mode.isControlDisabled,
       onChange: newTextValue => {
         this.value = newTextValue || '';
@@ -32,7 +32,7 @@ export class PasswordField implements ComponentFramework.ReactControl<IInputs, I
   }
 
   public getOutputs(): IOutputs {
-    return { passwordFieldProperty: this.value || '' };
+    return { passwordField: this.value || '' };
   }
 
   public destroy(): void {
