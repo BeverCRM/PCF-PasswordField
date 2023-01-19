@@ -4,7 +4,7 @@ This control converts the string field into a password field.
 
 After changing the field type to “BeverControls.PasswordField”.
 
-![image](https://user-images.githubusercontent.com/61091700/212837246-2612e766-eaa0-4060-9c8a-d4de999da89b.png)
+![image](https://user-images.githubusercontent.com/61091700/213378573-818bfc8d-1624-4208-8a5e-30640997074a.png)
 
 It will become as shown below.
 
