@@ -1,38 +1,33 @@
+import * as React from 'react';
 import { IInputs, IOutputs } from './generated/ManifestTypes';
 import { PasswordTextField, IPasswordTextFieldProps } from './components/PasswordTextField';
-import * as React from 'react';
 
 export class PasswordField implements ComponentFramework.ReactControl<IInputs, IOutputs> {
   private notifyOutputChanged: () => void;
-  private context: ComponentFramework.Context<IInputs>;
-  private value: string | null;
-
-  constructor() { }
+  private value: string | undefined;
 
   public init(
     context: ComponentFramework.Context<IInputs>,
     notifyOutputChanged: () => void,
   ): void {
     this.notifyOutputChanged = notifyOutputChanged;
-    this.context = context;
   }
 
   public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
     const props: IPasswordTextFieldProps = {
-      currentTextValue: context.parameters.passwordField.raw,
+      currentTextValue: context.parameters.passwordField.raw ?? undefined,
       isControlDisabled: context.mode.isControlDisabled,
       onChange: newTextValue => {
-        this.value = newTextValue || '';
+        this.value = newTextValue;
         this.notifyOutputChanged();
       },
     };
-    return React.createElement(
-      PasswordTextField, props,
-    );
+
+    return React.createElement(PasswordTextField, props);
   }
 
   public getOutputs(): IOutputs {
-    return { passwordField: this.value || '' };
+    return { passwordField: this.value };
   }
 
   public destroy(): void {
