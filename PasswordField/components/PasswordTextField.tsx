@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextField } from '@fluentui/react';
+import { isDirectionalKeyCode, TextField } from '@fluentui/react';
 import { fieldStyles } from '../styles/fieldStyles';
 
 export interface IPasswordTextFieldProps {
@@ -15,6 +15,7 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
   const [value, setValue] = React.useState(currentTextValue);
   const [displayValue, setDisplayValue] = React.useState(currentTextValue?.replace(/./g, '*'));
   const [passwordVisibility, setPasswordVisibility] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
 
   const toggleDisplayValue = () => {
     if (passwordVisibility) setDisplayValue(value);
@@ -35,7 +36,8 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
   }, [currentTextValue]);
 
   React.useEffect(() => {
-    setDisplayValue(value);
+    if (isFocused) setDisplayValue(value);
+    else toggleDisplayValue();
   }, [value]);
 
   React.useEffect(() => {
@@ -54,7 +56,11 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
       onChange={(e, newValue) => {
         setValue(newValue);
       }}
+      onFocus={() => {
+        setIsFocused(true);
+      }}
       onBlur={() => {
+        setIsFocused(false);
         toggleDisplayValue();
 
         if (value !== currentTextValue) {
