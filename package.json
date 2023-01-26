@@ -1,7 +1,7 @@
 {
-  "name": "pcf-project",
-  "version": "1.0.0",
-  "description": "Project containing your PowerApps Component Framework (PCF) control.",
+  "name": "PCF-PasswordField",
+  "version": "1.0.1",
+  "description": "This control converts the string field into a password field.",
   "scripts": {
     "build": "pcf-scripts build",
     "clean": "pcf-scripts clean",
