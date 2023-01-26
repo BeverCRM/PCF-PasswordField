@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isDirectionalKeyCode, TextField } from '@fluentui/react';
+import { TextField } from '@fluentui/react';
 import { fieldStyles } from '../styles/fieldStyles';
 
 export interface IPasswordTextFieldProps {
