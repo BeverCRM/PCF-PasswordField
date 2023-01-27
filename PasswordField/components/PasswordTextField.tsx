@@ -58,6 +58,7 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
       }}
       onFocus={() => {
         setIsFocused(true);
+        setDisplayValue(value);
       }}
       onBlur={() => {
         setIsFocused(false);
