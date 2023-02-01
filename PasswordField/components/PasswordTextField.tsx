@@ -11,22 +11,21 @@ export interface IPasswordTextFieldProps {
 export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps> = props => {
   const { currentTextValue, onChange, isControlDisabled } = props;
 
-  const rootEl = React.useRef<HTMLDivElement>(null);
   const [value, setValue] = React.useState(currentTextValue);
-  const [displayValue, setDisplayValue] = React.useState(currentTextValue?.replace(/./g, '*'));
-  const [passwordVisibility, setPasswordVisibility] = React.useState(false);
-  const [isFocused, setIsFocused] = React.useState(false);
+  const [visibility, setVisibility] = React.useState(false);
+  const [, forceReRender] = React.useState({});
+  const focusedRef = React.useRef(false);
+  const rootElRef = React.useRef<HTMLDivElement>(null);
 
-  const toggleDisplayValue = () => {
-    if (passwordVisibility) setDisplayValue(value);
-    else setDisplayValue(value?.replace(/./g, '*'));
-  };
+  const inputAttributeValue = visibility || focusedRef.current
+    ? value
+    : value?.replace(/./g, '*');
 
   React.useEffect(() => {
-    const revealBtn = rootEl.current?.querySelector<HTMLButtonElement>('.ms-TextField-reveal');
+    const revealBtn = rootElRef.current?.querySelector<HTMLButtonElement>('.ms-TextField-reveal');
     if (revealBtn) {
       revealBtn.onclick = () => {
-        setPasswordVisibility(!passwordVisibility);
+        setVisibility(!visibility);
       };
     }
   });
@@ -35,35 +34,24 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
     setValue(currentTextValue);
   }, [currentTextValue]);
 
-  React.useEffect(() => {
-    if (isFocused) setDisplayValue(value);
-    else toggleDisplayValue();
-  }, [value]);
-
-  React.useEffect(() => {
-    toggleDisplayValue();
-  }, [passwordVisibility]);
-
   return (
     <TextField
       type="password"
       canRevealPassword
       revealPasswordAriaLabel="Show password"
       styles={fieldStyles}
-      value={displayValue}
+      value={inputAttributeValue}
       disabled={isControlDisabled}
-      elementRef={rootEl}
-      onChange={(e, newValue) => {
+      elementRef={rootElRef}
+      onChange={(e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         setValue(newValue);
       }}
       onFocus={() => {
-        setIsFocused(true);
-        setDisplayValue(value);
+        focusedRef.current = true;
+        forceReRender({});
       }}
       onBlur={() => {
-        setIsFocused(false);
-        toggleDisplayValue();
-
+        focusedRef.current = false;
         if (value !== currentTextValue) {
           onChange(value);
         }
