@@ -11,15 +11,14 @@ export interface IPasswordTextFieldProps {
 export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps> = props => {
   const { currentTextValue, onChange, isControlDisabled } = props;
 
+  console.log('rerender');
+
   const [value, setValue] = React.useState(currentTextValue);
   const [visibility, setVisibility] = React.useState(false);
-  const [, forceReRender] = React.useState({});
-  const focusedRef = React.useRef(false);
+  const [focused, setFocused] = React.useState(false);
   const rootElRef = React.useRef<HTMLDivElement>(null);
 
-  const inputAttributeValue = visibility || focusedRef.current
-    ? value
-    : value?.replace(/./g, '*');
+  const inputAttributeValue = visibility || focused ? value : value?.replace(/./g, '*');
 
   React.useEffect(() => {
     const revealBtn = rootElRef.current?.querySelector<HTMLButtonElement>('.ms-TextField-reveal');
@@ -43,15 +42,15 @@ export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps>
       value={inputAttributeValue}
       disabled={isControlDisabled}
       elementRef={rootElRef}
-      onChange={(e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+      onChange={(e, newValue?: string) => {
         setValue(newValue);
       }}
       onFocus={() => {
-        focusedRef.current = true;
-        forceReRender({});
+        setFocused(true);
       }}
       onBlur={() => {
-        focusedRef.current = false;
+        setFocused(false);
+
         if (value !== currentTextValue) {
           onChange(value);
         }
