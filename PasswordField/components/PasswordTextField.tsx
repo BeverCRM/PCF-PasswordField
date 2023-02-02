@@ -11,8 +11,6 @@ export interface IPasswordTextFieldProps {
 export const PasswordTextField: React.FunctionComponent<IPasswordTextFieldProps> = props => {
   const { currentTextValue, onChange, isControlDisabled } = props;
 
-  console.log('rerender');
-
   const [value, setValue] = React.useState(currentTextValue);
   const [visibility, setVisibility] = React.useState(false);
   const [focused, setFocused] = React.useState(false);
