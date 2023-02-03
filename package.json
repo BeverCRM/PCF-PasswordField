@@ -1,6 +1,6 @@
 {
   "name": "pcf-password-field",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "This control converts the string field into a password field.",
   "scripts": {
     "build": "pcf-scripts build",
