@@ -6,6 +6,6 @@
 
 ### Improvements
 
-# v1.0.1 (2023-01-19)
+# v1.0.0 (2023-01-19)
 
 This control converts the string field into a password field.
