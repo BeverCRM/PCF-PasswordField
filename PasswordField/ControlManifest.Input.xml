@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="BeverControls" constructor="PasswordField" version="1.1.0" display-name-key="BeverControls.PasswordField" description-key="This control converts the string field into a password field" control-type="virtual">
+  <control namespace="BeverControls.Test" constructor="PasswordField" version="1.1.0" display-name-key="BeverControls.Test.PasswordField" description-key="This control converts the string field into a password field" control-type="virtual">
     <external-service-usage enabled="false">
     </external-service-usage>
-    <property name="passwordField" display-name-key="PasswordField" description-key="This field will be presented as a password field" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="passwordField" display-name-key="Password Field" description-key="This field will be presented as a password field" of-type="SingleLine.Text" usage="bound" required="true" />
     <resources>
       <code path="index.ts" order="1" />
       <css path="styles/passwordFieldStyles.css" order="1" />
       <platform-library name="React" version="16.8.6" />
-      <platform-library name="Fluent" version="8.29.0" />
     </resources>
   </control>
 </manifest>

@@ -15,8 +15,8 @@ export class PasswordField implements ComponentFramework.ReactControl<IInputs, I
 
   public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
     const props: IPasswordInputProps = {
-      currentTextValue: context.parameters.passwordField.raw ?? undefined,
-      isControlDisabled: context.mode.isControlDisabled,
+      currentValue: context.parameters.passwordField.raw ?? undefined,
+      disabled: context.mode.isControlDisabled,
       onChange: newTextValue => {
         this.value = newTextValue;
         this.notifyOutputChanged();
