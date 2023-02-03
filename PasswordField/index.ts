@@ -3,19 +3,21 @@ import { IInputs, IOutputs } from './generated/ManifestTypes';
 import { PasswordTextField, IPasswordInputProps } from './components/PasswordInput';
 
 export class PasswordField implements ComponentFramework.ReactControl<IInputs, IOutputs> {
+  private value?: string;
+  private security?: ComponentFramework.PropertyHelper.SecurityValues;
   private notifyOutputChanged: () => void;
-  private value: string | undefined;
 
   public init(
     context: ComponentFramework.Context<IInputs>,
     notifyOutputChanged: () => void,
   ): void {
+    this.security = context.parameters.passwordField.security;
     this.notifyOutputChanged = notifyOutputChanged;
   }
 
   public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
     const props: IPasswordInputProps = {
-      currentValue: context.parameters.passwordField.raw ?? undefined,
+      passwordField: context.parameters.passwordField,
       disabled: context.mode.isControlDisabled,
       onChange: newTextValue => {
         this.value = newTextValue;
@@ -27,7 +29,9 @@ export class PasswordField implements ComponentFramework.ReactControl<IInputs, I
   }
 
   public getOutputs(): IOutputs {
-    return { passwordField: this.value };
+    return {
+      passwordField: this.security?.readable ? this.value : undefined,
+    };
   }
 
   public destroy(): void {

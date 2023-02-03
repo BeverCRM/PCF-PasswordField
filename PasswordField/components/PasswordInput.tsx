@@ -2,19 +2,22 @@ import * as React from 'react';
 import { IconButton } from './IconButton';
 
 export interface IPasswordInputProps {
-  currentValue?: string;
+  passwordField: ComponentFramework.PropertyTypes.StringProperty;
   disabled: boolean;
   onChange: (newTextValue?: string) => void;
 }
 
 export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = props => {
-  const { currentValue, onChange, disabled } = props;
+  const { passwordField, onChange, disabled } = props;
 
   const [visibility, setVisibility] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
-    if (inputRef.current) inputRef.current.value = currentValue ?? '';
+    if (inputRef.current) {
+      if (passwordField.security?.readable) inputRef.current.value = passwordField.raw || '---';
+      else inputRef.current.value = '******';
+    }
   });
 
   return (
@@ -25,17 +28,33 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
       }>
         <input
           ref={inputRef}
-          type={visibility ? 'text' : 'password'}
+          type={ !passwordField.security?.readable || !passwordField.raw || visibility
+            ? 'text'
+            : 'password'}
           className="BeverControls_PasswordField-field"
           disabled={disabled}
+          onFocus={() => {
+            console.log(visibility, inputRef.current)
+            if (!passwordField.raw) inputRef!.current!.value = '';
+            if (!visibility) inputRef!.current!.type = 'password';
+          }}
           onBlur={() => {
             onChange(inputRef?.current?.value);
+
+            if (!passwordField.raw) {
+              inputRef!.current!.value = '---';
+              inputRef!.current!.type = 'text';
+            }
           }}
         />
-        <IconButton
-          off={visibility}
-          onClick={setVisibility.bind(null, !visibility)}
-        />
+        { passwordField.security?.readable &&
+          <IconButton
+            off={visibility}
+            onClick={() => {
+              setVisibility(!visibility);
+            }}
+          />
+        }
       </div>
     </div>
   );
