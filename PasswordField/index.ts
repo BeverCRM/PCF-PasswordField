@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IInputs, IOutputs } from './generated/ManifestTypes';
-import { PasswordTextField, IPasswordTextFieldProps } from './components/PasswordTextField';
+import { PasswordTextField, IPasswordInputProps } from './components/PasswordInput';
 
 export class PasswordField implements ComponentFramework.ReactControl<IInputs, IOutputs> {
   private notifyOutputChanged: () => void;
@@ -14,7 +14,7 @@ export class PasswordField implements ComponentFramework.ReactControl<IInputs, I
   }
 
   public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
-    const props: IPasswordTextFieldProps = {
+    const props: IPasswordInputProps = {
       currentTextValue: context.parameters.passwordField.raw ?? undefined,
       isControlDisabled: context.mode.isControlDisabled,
       onChange: newTextValue => {
