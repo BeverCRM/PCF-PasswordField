@@ -34,7 +34,6 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
           className="BeverControls_PasswordField-field"
           disabled={disabled}
           onFocus={() => {
-            console.log(visibility, inputRef.current)
             if (!passwordField.raw) inputRef!.current!.value = '';
             if (!visibility) inputRef!.current!.type = 'password';
           }}
