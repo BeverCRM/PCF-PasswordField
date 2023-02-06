@@ -38,9 +38,11 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
             if (!visibility) inputRef!.current!.type = 'password';
           }}
           onBlur={() => {
-            onChange(inputRef?.current?.value);
+            if (passwordField.raw !== inputRef?.current?.value) {
+              onChange(inputRef?.current?.value);
+            }
 
-            if (!passwordField.raw) {
+            if (!inputRef?.current?.value) {
               inputRef!.current!.value = '---';
               inputRef!.current!.type = 'text';
             }
