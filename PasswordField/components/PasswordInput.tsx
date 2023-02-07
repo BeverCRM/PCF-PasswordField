@@ -23,7 +23,7 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
   const [visibility, setVisibility] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const onChangeDebounce = React.useCallback(debounce((e: React.ChangeEvent<HTMLInputElement>) =>
-    onChange(e.target.value), 250), []);
+    onChange(e.target.value), 500), []);
 
   React.useEffect(() => {
     if (inputRef.current) {
