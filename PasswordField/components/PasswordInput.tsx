@@ -3,7 +3,7 @@ import { IconButton } from './IconButton';
 
 const debounce = (func: (...args: any[]) => void, delay: number) => {
   let timer: ReturnType<typeof setTimeout>;
-  return function (...args: any[]) {
+  return (...args: any[]) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
       func(...args);
@@ -23,7 +23,7 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
   const [visibility, setVisibility] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const onChangeDebounce = React.useCallback(debounce((e: React.ChangeEvent<HTMLInputElement>) =>
-    onChange(e.target.value), 500), []);
+    onChange(e.target.value), 250), []);
 
   React.useEffect(() => {
     if (inputRef.current) {
