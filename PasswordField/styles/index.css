@@ -13,7 +13,8 @@
   box-sizing: border-box;
 }
 
-.BeverControls_PasswordField-wrapper:hover {
+.BeverControls_PasswordField-wrapper:hover,
+.BeverControls_PasswordField-wrapper:has(input:focus) {
   border: 1px solid;
 }
 
@@ -44,7 +45,8 @@
   font-weight: 600 !important;
 }
 
-.BeverControls_PasswordField-field:hover, .BeverControls_PasswordField-field:focus {
+.BeverControls_PasswordField-field:hover,
+.BeverControls_PasswordField-field:focus {
   font-weight: 400;
 }
 
