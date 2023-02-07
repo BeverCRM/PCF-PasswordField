@@ -30,7 +30,7 @@ export class PasswordField implements ComponentFramework.ReactControl<IInputs, I
 
   public getOutputs(): IOutputs {
     return {
-      passwordField: this.security?.readable ? this.value : undefined,
+      passwordField: this.security?.editable ? this.value : undefined,
     };
   }
 

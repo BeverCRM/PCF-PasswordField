@@ -1,6 +1,16 @@
 import * as React from 'react';
 import { IconButton } from './IconButton';
 
+const debounce = (func: (...args: any[]) => void, delay: number) => {
+  let timer: ReturnType<typeof setTimeout>;
+  return function (...args: any[]) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};
+
 export interface IPasswordInputProps {
   passwordField: ComponentFramework.PropertyTypes.StringProperty;
   disabled: boolean;
@@ -12,6 +22,8 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
 
   const [visibility, setVisibility] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const onChangeDebounce = React.useCallback(debounce((e: React.ChangeEvent<HTMLInputElement>) =>
+    onChange(e.target.value), 500), []);
 
   React.useEffect(() => {
     if (inputRef.current) {
@@ -33,6 +45,7 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
             : 'password'}
           className="BeverControls_PasswordField-field"
           disabled={disabled}
+          onChange={onChangeDebounce}
           onFocus={() => {
             if (!passwordField.raw) inputRef!.current!.value = '';
             if (!visibility) inputRef!.current!.type = 'password';
