@@ -1,15 +1,6 @@
 import * as React from 'react';
 import { IconButton } from './IconButton';
-
-const debounce = (func: (...args: any[]) => void, delay: number) => {
-  let timer: ReturnType<typeof setTimeout>;
-  return (...args: any[]) => {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      func(...args);
-    }, delay);
-  };
-};
+import { debounce } from '../utilities/utilities';
 
 export interface IPasswordInputProps {
   passwordField: ComponentFramework.PropertyTypes.StringProperty;
