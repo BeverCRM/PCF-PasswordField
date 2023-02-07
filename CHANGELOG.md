@@ -2,7 +2,7 @@
 
 ### Bug Fixes
 
-* Fixed a bug related to the password value in the source HTML document.
+* Fixed a bug where the password value was shown in the source HTML document
 
 ### Improvements
 
