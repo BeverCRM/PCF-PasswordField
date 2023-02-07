@@ -27,8 +27,14 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
 
   React.useEffect(() => {
     if (inputRef.current) {
-      if (passwordField.security?.readable) inputRef.current.value = passwordField.raw || '---';
-      else inputRef.current.value = '******';
+      if (passwordField.security?.readable) {
+        let currentValue: string = passwordField.raw || '---';
+        if (document.activeElement === inputRef.current) currentValue = passwordField.raw || '';
+        inputRef.current.value = currentValue;
+      }
+      else {
+        inputRef.current.value = '******';
+      }
     }
   });
 
@@ -51,6 +57,8 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
             if (!visibility) inputRef!.current!.type = 'password';
           }}
           onBlur={() => {
+            inputRef!.current!.value = inputRef!.current!.value.trim();
+
             if (!inputRef?.current?.value) {
               inputRef!.current!.value = '---';
               inputRef!.current!.type = 'text';
