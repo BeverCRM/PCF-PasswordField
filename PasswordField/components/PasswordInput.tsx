@@ -52,7 +52,7 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
           onBlur={() => {
             inputRef.current!.value = inputRef.current!.value.trim();
 
-            if (!inputRef.current?.value) {
+            if (!inputRef.current!.value) {
               inputRef.current!.value = '---';
               inputRef.current!.type = 'text';
             }
