@@ -1,7 +1,7 @@
 {
-  "name": "pcf-project",
-  "version": "1.0.0",
-  "description": "Project containing your PowerApps Component Framework (PCF) control.",
+  "name": "pcf-password-field",
+  "version": "1.1.0",
+  "description": "This control converts the string field into a password field.",
   "scripts": {
     "build": "pcf-scripts build",
     "clean": "pcf-scripts clean",
@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "react": "16.8.6",
-    "@fluentui/react": "8.29.0",
     "react-dom": "16.8.6"
   },
   "devDependencies": {

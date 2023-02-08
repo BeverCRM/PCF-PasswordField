@@ -1,0 +1,80 @@
+.BeverControls_PasswordField {
+  width: 100%;
+  height: 35px;
+  box-sizing: border-box;
+}
+
+.BeverControls_PasswordField-wrapper {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+.BeverControls_PasswordField-wrapper:hover,
+.BeverControls_PasswordField-wrapper:has(input:focus) {
+  border: 1px solid;
+}
+
+.BeverControls_PasswordField-wrapper:hover .BeverControls_PasswordField-reveal {
+  visibility: visible;
+}
+
+.BeverControls_PasswordField-disabled:hover {
+  border-color: #e2e2e2;
+  background: #e2e2e2;
+}
+
+.BeverControls_PasswordField-field {
+  width: 100%;
+  min-width: 0px;
+  padding: 0px 8px;
+  outline: 0px;
+  box-shadow: none;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  border: none;
+  font-weight: 600;
+}
+
+.BeverControls_PasswordField-field:disabled {
+  background: none;
+  color: #333;
+  font-weight: 600 !important;
+}
+
+.BeverControls_PasswordField-field:hover,
+.BeverControls_PasswordField-field:focus {
+  font-weight: 400;
+}
+
+.BeverControls_PasswordField-reveal {
+  width: 32px;
+  padding: 9px 4px;
+  background: transparent;
+  border: none;
+  outline: transparent;
+  position: relative;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.BeverControls_PasswordField-eyeIcon {
+  width: 16px;
+  height: 16px;
+  fill: #0078d4;
+}
+
+.BeverControls_PasswordField-eyeIconSlash {
+  width: 18px;
+  height: 16px;
+  fill: #0078d4;
+}
+
+.BeverControls_PasswordField-reveal:hover {
+  outline: 0px;
+  color: #106ebe;
+  background: #f3f2f1;
+}
