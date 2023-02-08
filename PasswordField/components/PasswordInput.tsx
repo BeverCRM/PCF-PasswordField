@@ -19,9 +19,10 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
   React.useEffect(() => {
     if (inputRef.current) {
       if (passwordField.security?.readable) {
-        let currentValue: string = passwordField.raw || '---';
-        if (document.activeElement === inputRef.current) currentValue = passwordField.raw || '';
-        inputRef.current.value = currentValue;
+        inputRef.current.value = passwordField.raw || '---';
+        if (document.activeElement === inputRef.current) {
+          inputRef.current.value = passwordField.raw || '';
+        }
       }
       else {
         inputRef.current.value = '******';
@@ -39,7 +40,8 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
           ref={inputRef}
           type={ !passwordField.security?.readable || !passwordField.raw || visibility
             ? 'text'
-            : 'password'}
+            : 'password'
+          }
           className="BeverControls_PasswordField-field"
           disabled={disabled}
           onChange={onChangeDebounce}

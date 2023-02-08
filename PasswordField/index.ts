@@ -4,14 +4,12 @@ import { PasswordTextField, IPasswordInputProps } from './components/PasswordInp
 
 export class PasswordField implements ComponentFramework.ReactControl<IInputs, IOutputs> {
   private value?: string;
-  private security?: ComponentFramework.PropertyHelper.SecurityValues;
   private notifyOutputChanged: () => void;
 
   public init(
     context: ComponentFramework.Context<IInputs>,
     notifyOutputChanged: () => void,
   ): void {
-    this.security = context.parameters.passwordField.security;
     this.notifyOutputChanged = notifyOutputChanged;
   }
 
@@ -30,7 +28,7 @@ export class PasswordField implements ComponentFramework.ReactControl<IInputs, I
 
   public getOutputs(): IOutputs {
     return {
-      passwordField: this.security?.editable ? this.value : undefined,
+      passwordField: this.value,
     };
   }
 
