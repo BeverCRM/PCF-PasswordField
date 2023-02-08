@@ -46,15 +46,15 @@ export const PasswordTextField: React.FunctionComponent<IPasswordInputProps> = p
           disabled={disabled}
           onChange={onChangeDebounce}
           onFocus={() => {
-            if (!passwordField.raw) inputRef!.current!.value = '';
-            if (!visibility) inputRef!.current!.type = 'password';
+            if (!passwordField.raw) inputRef.current!.value = '';
+            if (!visibility) inputRef.current!.type = 'password';
           }}
           onBlur={() => {
-            inputRef!.current!.value = inputRef!.current!.value.trim();
+            inputRef.current!.value = inputRef.current!.value.trim();
 
-            if (!inputRef?.current?.value) {
-              inputRef!.current!.value = '---';
-              inputRef!.current!.type = 'text';
+            if (!inputRef.current?.value) {
+              inputRef.current!.value = '---';
+              inputRef.current!.type = 'text';
             }
           }}
         />
