@@ -1,4 +1,4 @@
-## [v1.1.0](https://github.com/BeverCRM/PCF-PasswordField/releases/tag/v1.1.0) (2023-02-03)
+## [v1.1.0](https://github.com/BeverCRM/PCF-PasswordField/releases/tag/v1.1.0) (2023-02-09)
 
 ### Bug Fixes
 
