@@ -9,6 +9,7 @@ After changing the field type to “BeverControls.PasswordField”.
 It will become as shown below.
 
 ![image](https://user-images.githubusercontent.com/61091700/212686247-13253473-4481-40bd-8ab5-23ed3dd0afc1.png)
+![image](https://user-images.githubusercontent.com/60586462/222730904-486a955c-63c4-4ec4-9484-a0acc470a097.png)
 
 A user with read data privileges can see the value inside the password field by clicking the eye button on the right side.
 
