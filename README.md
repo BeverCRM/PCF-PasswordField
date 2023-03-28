@@ -19,8 +19,10 @@ A user with read data privileges can see the value inside the password field by 
 <br>
 <br>
 
+<!-- <IGNORE> -->
 [![Download-Btn](https://user-images.githubusercontent.com/90428984/196970215-5355b724-6ebc-4457-995b-d3f4ebb450cf.png)](https://marketplace.bevercrm.com/pcf-controls/PasswordField)
 
 # Demo Password Field PCF Control
 
 [![youtube-video](https://user-images.githubusercontent.com/60586462/213200182-630e44e6-30e8-4c34-9960-5672c392ae3e.png)](https://www.youtube.com/watch?v=JrtwpTn3YC8)
+<!-- </IGNORE> -->
