@@ -5,7 +5,8 @@
   },
   "extends": [
     "bever",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:cypress/recommended"
   ],
   "globals": {
     "ComponentFramework": true
